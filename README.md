@@ -150,7 +150,7 @@ Con un driver audio virtuale (per esempio BlackHole) l'audio di Logic arriva all
 
 ## v5 — “Bengo Edition”
 
-Stesso motore e stessi comandi della v4, con un nome nuovo e tre livree ispirate agli anni '70. Il pulsante **Livrea** in alto a destra passa dall'una all'altra, e la scelta resta salvata.
+Stesso motore e stessi comandi della v4, con un nome nuovo e tre livree ispirate agli anni '70. Il pulsante **Tema** in alto a destra passa dall'una all'altra, e la scelta resta salvata.
 
 - **Fillmore**: poster psichedelico. Fondo viola, sole ad archi concentrici, “Bengo Edition” in Kablammo con ombre sfalsate.
 - **Sunset ’74**: strisce senape, arancio, ruggine e marrone su fondo crema, “Bengo Edition” in Shrikhand inclinato.

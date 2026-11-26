@@ -225,7 +225,7 @@ input{-webkit-user-select:auto;user-select:auto}
     <div class="s"><span class="b">S33</span><span class="n">STOMP BOX</span></div>
     <h1 class="ed" style="margin:10px 0 0;font-weight:400"><span class="e1">Bengo</span> <span class="e2">Edition</span></h1>
     <div class="t">GATE · FUZZ · AMP · MOD · DELAY · RIVERBERO</div>
-    <button id="livrea" type="button" aria-label="Cambia livrea"><i></i><i></i><i></i>Livrea</button>
+    <button id="livrea" type="button" aria-label="Cambia tema"><i></i><i></i><i></i>Tema</button>
   </header>
   <div class="top"><div class="vus" id="vus"></div></div>
 
@@ -688,9 +688,9 @@ registerProcessor('gate-fx', GateFx);
     PED.forEach(function (p) { p.el.style.setProperty('--c', t.ped[p.k][0]); p.el.style.setProperty('--pt', t.ped[p.k][1]); });
     var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', t.meta);
     var nx = THEMES[(THEMES.indexOf(t) + 1) % THEMES.length];
-    $('livrea').setAttribute('aria-label', 'Livrea ' + t.name + ': tocca per passare a ' + nx.name);
-    $('livrea').title = 'Livrea: ' + t.name + ' (tocca per ' + nx.name + ')';
-    if (announce) $('msg').textContent = 'Livrea: ' + t.name + '.';
+    $('livrea').setAttribute('aria-label', 'Tema ' + t.name + ': tocca per passare a ' + nx.name);
+    $('livrea').title = 'Tema: ' + t.name + ' (tocca per ' + nx.name + ')';
+    if (announce) $('msg').textContent = 'Tema: ' + t.name + '.';
   }
   setTheme(state.theme);
   $('livrea').addEventListener('click', function () {

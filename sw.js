@@ -1,5 +1,5 @@
 // Incrementa il numero di versione ogni volta che modifichi index.html
-const CACHE = 'stompbox-v5.3';
+const CACHE = 'stompbox-v5.4';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
