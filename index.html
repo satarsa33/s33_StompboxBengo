@@ -79,6 +79,8 @@ main{max-width:430px;margin:0 auto;padding:16px 14px 40px}
 #filebox input{width:100%;margin-bottom:8px;color:var(--fg);font-size:12px}
 .fld{display:flex;flex-direction:column;gap:4px;min-width:0;font:700 9px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
 select{width:100%;min-width:0;background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 6px;font:12px -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;letter-spacing:0;text-transform:none}
+#preset{font-size:15px;font-weight:600;padding:12px 10px;min-height:46px;border-width:2px}
+#preset optgroup{font-weight:700}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .row2 .fld:only-child,.row2 .full{grid-column:1/-1}
 .inrow{display:flex;align-items:center;gap:12px;margin-top:10px}
@@ -157,27 +159,64 @@ html,body{overscroll-behavior:none}
 body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
 input{-webkit-user-select:auto;user-select:auto}
 .foot{font-size:10px;color:var(--mut);text-align:center;margin-top:8px}
-@media (max-width:999px){.knobs[style*="--n:6"]{--ks:46px;gap:2px}.knobs[style*="--n:5"]{--ks:52px}}
-@media (min-width:600px) and (max-width:999px){
+@media (max-width:1199px){.knobs[style*="--n:6"]{--ks:46px;gap:2px}.knobs[style*="--n:5"]{--ks:52px}}
+@media (min-width:600px) and (max-width:1199px){
   main{max-width:600px}
   #board{--ks:64px}
   .vus{justify-content:center}.vu{max-width:240px}
 }
-@media (min-width:1000px){
-  main{max-width:1500px;padding:16px 24px 30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;align-items:start}
-  .logo{grid-column:1/-1}
-  .inp{grid-column:1;grid-row:2;margin-bottom:0}
-  .top{grid-column:2;grid-row:2;position:static;padding:0;margin:0;background:transparent}
-  .vus{gap:12px}.vu{max-width:360px}
+@media (min-width:1200px){
+  /* vista larga: intestazione, ingresso e indicatori su una riga, pedaliera che riempie il resto della finestra */
+  main{max-width:none;min-height:100vh;min-height:100dvh;padding:12px 18px 8px;display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,1.7fr) minmax(0,1fr);grid-template-rows:auto 1fr auto;gap:12px 14px;align-items:stretch}
+  .logo{grid-column:1;grid-row:1;min-height:0;margin:0}
+  .inp{grid-column:2;grid-row:1;margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;align-content:start}
+  .inp>h2:first-child{grid-column:1;grid-row:1}
+  .inp>.seg{grid-column:1;grid-row:2}
+  .inp>#devbox,.inp>#filebox{grid-column:1;grid-row:3/6}
+  .inp>.inrow{grid-column:2;grid-row:1/3;margin:0;align-self:center}
+  .inp>h2.sub{grid-column:2;grid-row:3;margin-top:10px}
+  .inp>#preset{grid-column:2;grid-row:4}
+  .inp>.note,.inp>.err{grid-column:1/-1;grid-row:6}
+  .top{grid-column:3;grid-row:1;position:static;padding:0;margin:0;background:transparent;display:flex}
+  .vus{flex:1;flex-direction:column;gap:10px;justify-content:center;align-items:center}
+  .vu{flex:none;width:100%;max-width:300px}
   main>.cable{display:none}
-  #board{grid-column:1/-1;display:flex;flex-direction:row;align-items:stretch;margin-top:14px;padding:10px;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;--ks:56px;overflow-x:auto}
-  #board>.pedal{flex:1 0 168px;min-width:0}
+  #board{grid-column:1/-1;grid-row:2;display:flex;flex-direction:row;align-items:stretch;padding:10px;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow-x:auto;
+    --ks:clamp(40px,min(4.6vw,calc((100vh - 520px) / 3.15)),110px)}
+  #board>.pedal{flex:1 0 118px;min-width:0;display:flex;flex-direction:column}
+  #board>.pedal:has(.knobs[style*="--n:6"]),#board>.pedal:has(.knobs[style*="--n:5"]){flex:1.5 0 170px}
   #board>.cable{flex:none;width:14px;height:6px;margin:0;align-self:center;background:linear-gradient(180deg,#111,#4a4743,#111)}
   .knobs{grid-template-columns:repeat(2,1fr);row-gap:10px}
   .knobs .kb:last-child:nth-child(odd){grid-column:1/-1}
-  main>.note,main>.foot{grid-column:1/-1}
+  .knobs[style*="--n:6"],.knobs[style*="--n:5"]{grid-template-columns:repeat(3,1fr)}
+  .knobs[style*="--n:5"] .kb:last-child:nth-child(odd){grid-column:auto}
+  .pedal .fsw{margin-top:auto;width:min(calc(var(--ks) * 1.1),76px);height:min(calc(var(--ks) * 1.1),76px)}
+  .pedal .fsw span{width:55%;height:55%;margin:auto;position:relative;top:50%;transform:translateY(-50%)}
+  .pname{font-size:clamp(16px,1.4vw,26px)}
+  .kl{font-size:clamp(9px,.72vw,13px);letter-spacing:0;overflow:hidden;text-overflow:ellipsis}
+  .knobs{gap:2px}
+  .logo .n{font-size:clamp(17px,1.6vw,24px)}
+  .logo .s{padding-right:0}
+  [data-theme="fillmore"] .logo .s{margin-top:2px}
+  #livrea{top:auto;bottom:10px;right:10px}
+  .logo .t{display:none}
+  /* nella vista larga la maniglia ≡ va in basso a destra e il nome del pedale si adatta alla sua larghezza */
+  #board>.pedal{container-type:inline-size}
+  .ptop{min-width:0;margin-right:0}
+  .grip{top:auto;bottom:8px;right:6px}
+  [data-theme="sunset"] .grip{top:auto}
+  .pname{min-width:0;overflow:hidden;white-space:nowrap;font-size:clamp(11px,8cqi,26px)}
+  [data-theme="sunset"] .pname{font-size:clamp(12px,10cqi,28px)}
+  [data-theme="acido"] .pname{font-size:clamp(9px,7.2cqi,22px)}
+  [data-theme="fillmore"] .e1{font-size:clamp(38px,3vw,52px)}
+  [data-theme="sunset"] .ed{font-size:clamp(28px,2.3vw,40px)}
+  [data-theme="acido"] .e1{font-size:clamp(30px,2.5vw,46px)}
+  [data-theme="acido"] .e2{font-size:clamp(17px,1.35vw,24px)}
+  [data-theme="acido"] .logo{background:radial-gradient(circle at calc(100% + 70px) 50%,#ff4fd8 0 30px,#0d0b12 30px 50px,#8b5cff 50px 70px,#0d0b12 70px 90px,#b6ff3b 90px 110px,#0d0b12 110px 130px,#ff4fd8 130px 150px,#0d0b12 150px)}
+  [data-theme="sunset"] .logo{padding-bottom:64px}
+  .kv{font-size:clamp(10px,.68vw,12px)}
+  main>.foot{grid-column:1/-1;grid-row:3;margin:0}
 }
-@media (min-width:1400px){#board{--ks:62px}}
 </style>
 </head>
 <body>
@@ -1228,18 +1267,33 @@ registerProcessor('gate-fx', GateFx);
   });
 
   // ---------- preset (valori reali, convertiti nella posizione delle manopole) ----------
+  // Gilmour: impostazioni ricostruite da gilmourish.com (foto, video, interviste). Big Muff ≈ Fuzz con tono scuro,
+  // Hiwatt ≈ Amp pulito e brillante, Electric Mistress ≈ Flanger lento e leggero, Uni-Vibe/Leslie ≈ Chorus lento e profondo,
+  // Binson Echorec ≈ Delay con un po' di Wow, MXR digital delay ≈ Delay senza Wow. Ritardo tipico: 5-6 ripetizioni al 30% circa.
+  var HIWATT = { drive: 2, bass: 5, mid: 5.5, treble: 6.5, presence: 6, volume: 5, cab: '4x12' };
+  var MISTRESS = { rate: 0.1, depth: 0.35, feedback: 0.3, mix: 0.22 };
+  function mix(a, b) { var o = {}, k; for (k in a) o[k] = a[k]; for (k in b) o[k] = b[k]; return o; }
   var PRESETS = {
     'Hendrix — Fuzz Face': { gt: { threshold: -65, release: 0.12 }, fz: { fuzz: 8.5, bias: 5, tone: 7, level: 5 },
       am: { drive: 4, bass: 6, mid: 6, treble: 6, presence: 6, volume: 5, cab: '4x12' }, rv: { decay: 0.45, damp: 5000, predelay: 0.015, mix: 0.15 } },
-    'Hendrix — Fuzz affamato': { fz: { fuzz: 9, bias: 8.5, tone: 6, level: 6 },
+    'Hendrix — Fuzz a batteria scarica': { fz: { fuzz: 9, bias: 8.5, tone: 6, level: 6 },
       am: { drive: 3.5, bass: 5.5, mid: 6, treble: 6, presence: 5, volume: 5, cab: '4x12' }, rv: { decay: 0.4, damp: 4500, predelay: 0.01, mix: 0.12 } },
-    'Gilmour — Assolo con eco': { gt: { threshold: -68, release: 0.15 }, fz: { fuzz: 6.5, bias: 4.5, tone: 5, level: 4.5 },
-      am: { drive: 3, bass: 5, mid: 4, treble: 6, presence: 5.5, volume: 5, cab: '4x12' },
-      dl: { time: 0.44, feedback: 0.45, tone: 3500, wow: 0.3, mix: 0.35 }, rv: { decay: 0.7, damp: 4500, predelay: 0.03, mix: 0.25 } },
-    'Gilmour — Pulito con chorus': { am: { drive: 1.2, bass: 5, mid: 4.5, treble: 6.5, presence: 6, volume: 6, cab: '1x12' },
-      ch: { rate: 0.8, depth: 0.45, mix: 0.4 }, dl: { time: 0.38, feedback: 0.3, tone: 5000, wow: 0.2, mix: 0.3 }, rv: { decay: 0.6, damp: 6000, predelay: 0.02, mix: 0.25 } },
-    'Gilmour — Run Like Hell': { am: { drive: 2.5, bass: 4.5, mid: 5, treble: 6.5, presence: 6, volume: 5.5, cab: '1x12' },
-      dl: { time: 0.381, feedback: 0.35, tone: 6000, wow: 0.05, mix: 0.5 }, rv: { decay: 0.4, damp: 6000, predelay: 0.01, mix: 0.15 } },
+    'Gilmour — Comfortably Numb (assolo)': { gt: { threshold: -70, release: 0.15 }, fz: { fuzz: 7, bias: 5, tone: 3.5, level: 5.5 }, am: HIWATT,
+      ch: { rate: 0.7, depth: 0.3, mix: 0.2 }, dl: { time: 0.37, feedback: 0.5, tone: 4500, wow: 0, mix: 0.3 }, rv: { decay: 0.55, damp: 5000, predelay: 0.02, mix: 0.18 } },
+    'Gilmour — Time (assolo)': { gt: { threshold: -68, release: 0.12 }, fz: { fuzz: 9, bias: 5, tone: 6.5, level: 5 }, am: mix(HIWATT, { drive: 3.5 }),
+      dl: { time: 0.3, feedback: 0.45, tone: 3200, wow: 0.35, mix: 0.3 }, rv: { decay: 0.8, damp: 4500, predelay: 0.03, mix: 0.35 } },
+    'Gilmour — Money (assolo)': { gt: { threshold: -68, release: 0.12 }, fz: { fuzz: 8.5, bias: 5, tone: 6, level: 5 }, am: mix(HIWATT, { drive: 3 }),
+      dl: { time: 0.3, feedback: 0.3, tone: 3000, wow: 0.3, mix: 0.25 }, rv: { decay: 0.45, damp: 5000, predelay: 0.01, mix: 0.12 } },
+    'Gilmour — Shine On (assolo pulito)': { am: mix(HIWATT, { drive: 2.5, volume: 6 }),
+      dl: { time: 0.3, feedback: 0.45, tone: 4000, wow: 0.25, mix: 0.3 }, rv: { decay: 0.6, damp: 6000, predelay: 0.02, mix: 0.2 } },
+    'Gilmour — Shine On (tema di Syd)': { am: mix(HIWATT, { drive: 1.5, volume: 6 }), fl: MISTRESS,
+      dl: { time: 0.37, feedback: 0.7, tone: 4000, wow: 0.1, mix: 0.35 }, rv: { decay: 0.65, damp: 6000, predelay: 0.02, mix: 0.25 } },
+    'Gilmour — Breathe / Us and Them (pulito)': { am: mix(HIWATT, { drive: 1, treble: 6, cab: '1x12' }), ch: { rate: 1.1, depth: 0.7, mix: 0.5 },
+      dl: { time: 0.3, feedback: 0.35, tone: 3500, wow: 0.3, mix: 0.25 }, rv: { decay: 0.6, damp: 5500, predelay: 0.02, mix: 0.25 } },
+    'Gilmour — Run Like Hell': { am: mix(HIWATT, { drive: 3, cab: '1x12' }), fl: MISTRESS,
+      dl: { time: 0.38, feedback: 0.35, tone: 6000, wow: 0, mix: 0.5 }, rv: { decay: 0.4, damp: 6000, predelay: 0.01, mix: 0.15 } },
+    'Gilmour — Another Brick in the Wall (assolo)': { gt: { threshold: -55, release: 0.05 },
+      am: { drive: 6, bass: 5.5, mid: 6.5, treble: 5, presence: 5, volume: 5, cab: '4x12' }, rv: { decay: 0.35, damp: 4500, predelay: 0.01, mix: 0.1 } },
     'Clapton — Woman tone': { gt: { threshold: -72, release: 0.12 }, am: { drive: 8, bass: 6, mid: 7.5, treble: 2, presence: 3, volume: 5, cab: '4x12' },
       rv: { decay: 0.5, damp: 3500, predelay: 0.02, mix: 0.15 } },
     'Clapton — Blues crunch': { am: { drive: 5.5, bass: 5, mid: 6.5, treble: 5.5, presence: 5, volume: 5, cab: '4x12' },
@@ -1252,7 +1306,14 @@ registerProcessor('gate-fx', GateFx);
     for (var i = 0; i < 40; i++) { var m = (lo + hi) / 2; if (k.map(m) < v) lo = m; else hi = m; }
     return (lo + hi) / 2;
   }
-  Object.keys(PRESETS).forEach(function (n) { $('preset').add(new Option(n, n)); });
+  // menu dei preset raggruppato per chitarrista
+  var groups = {};
+  Object.keys(PRESETS).forEach(function (n) {
+    var who = n.split(' — ')[0].split(' anni')[0], label = n.indexOf(' — ') > -1 ? n.slice(n.indexOf(' — ') + 3) : n;
+    if (n.indexOf(' anni') > -1) label = n.slice(who.length + 1).replace(' — ', ': ');
+    if (!groups[who]) { groups[who] = document.createElement('optgroup'); groups[who].label = who; $('preset').appendChild(groups[who]); }
+    groups[who].appendChild(new Option(label, n));
+  });
   $('preset').addEventListener('change', function (e) {
     var pr = PRESETS[e.target.value];
     if (!pr) return;

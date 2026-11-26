@@ -157,3 +157,10 @@ Stesso motore e stessi comandi della v4, con un nome nuovo e tre livree ispirate
 - **Acido**: op-art al neon. Fondo nero, cerchi concentrici, pedali scuri con bordi fluorescenti, “Bengo Edition” in Monoton.
 
 I caratteri delle livree arrivano da Google Fonts: servono la connessione al primo avvio, poi il service worker li tiene in cache per l'uso offline. Le impostazioni della v4 (manopole, ordine dei pedali, dispositivi) vengono riprese al primo avvio della v5.
+
+### v5.2
+
+- **Finestra larga** (da 1200 px): intestazione, ingresso e indicatori stanno su una riga e la pedaliera riempie tutto il resto della finestra; manopole e testi crescono con la finestra. Amp e Delay sono più larghi, con le manopole su tre colonne. La maniglia ≡ per spostare i pedali è in basso a destra.
+- **Menu dei preset** più grande e raggruppato per chitarrista.
+- **Preset di Gilmour** ricostruiti dalle configurazioni documentate su gilmourish.com: Comfortably Numb (assolo), Time (assolo), Money (assolo), Shine On (assolo pulito e tema di Syd), Breathe / Us and Them, Run Like Hell, Another Brick in the Wall (assolo). Big Muff ≈ Fuzz con tono scuro, Hiwatt ≈ Amp pulito e brillante, Electric Mistress ≈ Flanger lento e leggero, Uni-Vibe ≈ Chorus lento e profondo, Binson Echorec ≈ Delay con un po' di Wow.
+- "Fuzz affamato" si chiama ora **Fuzz a batteria scarica**: il Bias alto imita un Fuzz Face con la pila quasi esaurita, che si chiude e sputacchia.
